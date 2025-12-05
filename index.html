@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pilih Kredit</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: http: data: blob:; font-src 'self' https: data:;"
+    />
+
+    <!-- Favicons -->
+    <link href="assets/img/logo_2.png" rel="icon" />
+    <link href="assets/img/logo_2.png" rel="apple-touch-icon" />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+  </head>
+
+  <body class="index-page">
+    <header id="header" class="header d-flex align-items-center fixed-top">
+      <div class="mobile-nav-overlay"></div>
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img
+            src="assets/img/logo_copy.png"
+            alt="Pilih Kredit Logo"
+            width="270"
+            height="400"
+            class="img-fluid"
+            data-scroll-logo="assets/img/logo_filled.png"
+          />
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a href="#hero" class="active nav-link" data-i18n="home_nav"></a>
+            </li>
+            <li>
+              <a href="#features" class="nav-link" data-i18n="feature_nav"></a>
+            </li>
+            <li><a href="#faq" class="nav-link" data-i18n="faq_nav"></a></li>
+            <li>
+              <a href="#about" class="nav-link" data-i18n="aboutus_nav"></a>
+            </li>
+            <li>
+              <a href="news.php" class="nav-link" data-i18n="news_nav"></a>
+            </li>
+            <li class="language-selector">
+              <img
+                class="indonesia flag-icon"
+                src="assets/img/flag-indo.png"
+                height="28"
+                width="28"
+                onclick="changeLanguage('id')"
+                alt="Indonesia"
+              />
+              <img
+                class="english flag-icon"
+                src="assets/img/flag-usa.png"
+                height="28"
+                width="28"
+                onclick="changeLanguage('en')"
+                alt="English"
+              />
+            </li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Hero Section -->
+      <section id="hero" class="hero section dark-background">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-4 order-lg-last hero-img">
+              <!-- Enhanced phone animations -->
+              <div class="phone-container position-relative">
+                <img
+                  src="assets/img/phone-1.png"
+                  alt="Phone 1"
+                  class="phone-1 img-fluid hover-image floating"
+                  loading="lazy"
+                  data-aos="fade-up"
+                />
+                <img
+                  src="assets/img/phone-2.png"
+                  alt="Phone 2"
+                  class="phone-2 img-fluid hover-image floating-delayed"
+                  loading="lazy"
+                  data-aos="fade-up"
+                />
+              </div>
+            </div>
+            <div
+              class="col-lg-8 d-flex flex-column justify-content-center align-items text-center text-md-start"
+            >
+              <h1 class="header1 display-4 fw-bold" data-i18n="header_top"></h1>
+              <p class="lead mb-4" data-i18n="subheader_top"></p>
+              <div
+                class="d-flex mt-4 justify-content-center justify-content-md-start app-buttons"
+              >
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.pilihid.kreditid.pilihkredit"
+                  target="blank"
+                  class="me-3"
+                >
+                  <img
+                    class="img-fluid hover-image"
+                    src="assets/img/google.png"
+                    height="70"
+                    width="200"
+                    alt="Google Play"
+                  />
+                </a>
+                <img
+                  class="img-fluid hover-image"
+                  src="assets/img/apple.png"
+                  height="70"
+                  width="200"
+                  alt="App Store"
+                  loading="lazy"
+                />
+              </div>
+              <div
+                class="col-lg-6 d-flex mt-4 justify-content-center justify-content-md-start"
+              >
+                <h5
+                  class="badge bg-light text-dark p-2"
+                  data-i18n="ojk_short"
+                ></h5>
+              </div>
+              <div
+                class="col-lg-6 d-flex mt-4 justify-content-center justify-content-md-start"
+              >
+                <img src="assets/img/banner.png" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Section -->
+      <section id="featured" class="featured section">
+        <div class="container section-title" data-aos="fade-up">
+          <h2 data-i18n="header_second"></h2>
+          <p data-i18n="subheader_second"></p>
+        </div>
+
+        <div class="container">
+          <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+            <!-- Direct Download Version Card -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+              <div class="card">
+                <div class="img">
+                  <!-- <img src="assets/img/direct-download.svg" alt="Direct download illustration" class="img-fluid feature-illustration"> -->
+                  <div class="icon"><i class="bi bi-download"></i></div>
+                </div>
+                <h2 class="title" data-i18n="direct_download_version"></h2>
+                <p data-i18n="direct_download_version_info"></p>
+              </div>
+            </div>
+
+            <!-- API Version Card -->
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+              <div class="card">
+                <div class="img">
+                  <!-- <img src="assets/img/api-integration.svg" alt="API integration illustration" class="img-fluid feature-illustration"> -->
+                  <div class="icon"><i class="bi bi-code-square"></i></div>
+                </div>
+                <h2 class="title" data-i18n="api_version"></h2>
+                <p data-i18n="api_version_info"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cards" class="cards section">
+        <div class="container">
+          <div class="section-title" data-aos="fade-up">
+            <h2 data-i18n="step_title">How It Works</h2>
+            <p data-i18n="step_description">
+              Complete your loan application in just a few simple steps
+            </p>
+          </div>
+
+          <div class="row align-items-center">
+            <!-- Left side: Steps -->
+            <div class="col-lg-4" data-aos="fade-right">
+              <div class="steps-container">
+                <div class="card-item active" data-tab="first">
+                  <div class="step-number">01</div>
+                  <h4 data-i18n="step_register_header"></h4>
+                  <p data-i18n="step_register_info"></p>
+                </div>
+
+                <div class="card-item" data-tab="second">
+                  <div class="step-number">02</div>
+                  <h4 data-i18n="step_apply_header"></h4>
+                  <p data-i18n="step_apply_info"></p>
+                </div>
+
+                <div class="card-item" data-tab="third">
+                  <div class="step-number">03</div>
+                  <h4 data-i18n="step_receive_header"></h4>
+                  <p data-i18n="step_receive_info"></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right side: Phone Showcase -->
+            <div class="col-lg-8" data-aos="fade-left">
+              <div class="showcase-wrapper">
+                <div class="tab-content" id="stepsContent">
+                  <!-- First Step -->
+                  <div
+                    class="tab-pane fade show active"
+                    id="first"
+                    role="tabpanel"
+                  >
+                    <div class="phone-showcase">
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-5.png"
+                          alt="Registration screen"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-1.png"
+                          alt="Profile setup"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Second Step -->
+                  <div class="tab-pane fade" id="second" role="tabpanel">
+                    <div class="phone-showcase">
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-10.png"
+                          alt="Loan options"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-11.png"
+                          alt="Application form"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Third Step -->
+                  <div class="tab-pane fade" id="third" role="tabpanel">
+                    <div class="phone-showcase">
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-13.png"
+                          alt="Loan approved"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="phone-image">
+                        <img
+                          src="assets/img/app-gallery/app-gallery-6.png"
+                          alt="Payment details"
+                          class="phone-screenshot"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features section">
+        <div class="container">
+          <!-- Section Title -->
+          <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 data-i18n="feature_nav">Fitur</h2>
+            <p data-i18n="feature_subheader">
+              Pilih Kredit memberikan kenyamanan dan fitur-fitur yang bisa
+              dijelajahi oleh peminjam.
+            </p>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="features-grid">
+            <!-- Feature Card 1 -->
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="feature-image">
+                <img
+                  src="assets/img/pattern/pattern1.png"
+                  alt="Security Features"
+                  class="feature-img"
+                />
+              </div>
+              <div class="feature-content">
+                <div class="feature-icon">
+                  <i class="bi bi-shield-check"></i>
+                </div>
+                <h3 data-i18n="feature1_header"></h3>
+                <ul class="feature-list">
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature1_info1"></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature1_info2"></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature1_info3"></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="feature-image">
+                <img
+                  src="assets/img/pattern/pattern2.png"
+                  alt="Loan Features"
+                  class="feature-img"
+                />
+              </div>
+              <div class="feature-content">
+                <div class="feature-icon">
+                  <i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <h3 data-i18n="feature2_header"></h3>
+                <p
+                  class="feature-description"
+                  data-i18n="feature2_subheader"
+                ></p>
+              </div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="feature-image">
+                <img
+                  src="assets/img/banner_left_build.png"
+                  alt="User Experience Features"
+                  class="feature-img"
+                />
+              </div>
+              <div class="feature-content">
+                <div class="feature-icon">
+                  <i class="bi bi-stars"></i>
+                </div>
+                <h3 data-i18n="feature3_header"></h3>
+                <ul class="feature-list">
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature3_info1"></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature3_info2"></span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i
+                    ><span data-i18n="feature3_info3"></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partners Section -->
+      <section id="partners" class="partners section">
+        <div class="container" data-aos="fade-up">
+          <!-- Section Title -->
+          <div class="section-title text-center">
+            <h2 data-i18n="partner_header">Our Partners</h2>
+            <p data-i18n="partner_subheader">
+              Trusted by leading financial institutions
+            </p>
+          </div>
+
+          <div class="swiper init-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-1.jpeg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-2.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-3.jpg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-4.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-5.jpg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-6.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-7.jpg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-8.jpg"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-9.png"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-10.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-11.png"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-12.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-13.jpg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-14.jpg"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-15.png"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-16.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-17.jpg"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-18.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-19.png"
+                  class="testimonial-img"
+                  alt="Partner 1"
+                  loading="lazy"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/img/logo-partner/partner-20.png"
+                  class="testimonial-img"
+                  alt="Partner 2"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certification Section -->
+      <section id="certification" class="certification section">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center mb-5">
+            <h2 data-i18n="regulator_header">Regulator</h2>
+            <p data-i18n="regulator_subheader">
+              Pilih Kredit diawasi dan terdaftar pada regulator resmi di
+              Indonesia.
+            </p>
+          </div>
+          <div
+            class="footer-certifications d-flex flex-wrap justify-content-center align-items-center gap-4"
+          >
+            <img
+              src="assets/img/ojk-logo.png"
+              width="120"
+              height="60"
+              alt="OJK Logo"
+              class="certification-logo"
+            />
+            <img
+              src="assets/img/tuv-logo.jpeg"
+              width="120"
+              height="60"
+              alt="TUV Logo"
+              class="certification-logo"
+            />
+            <img
+              src="assets/img/pentest-logo.png"
+              width="80"
+              height="80"
+              alt="Pentest Logo"
+              class="certification-logo"
+            />
+            <img
+              src="assets/img/fintech-logo.jpeg"
+              width="80"
+              height="80"
+              alt="Fintech Logo"
+              class="certification-logo"
+            />
+            <img
+              src="assets/img/bssn-logo.jpeg"
+              width="80"
+              height="80"
+              alt="BSSN Logo"
+              class="certification-logo"
+            />
+            <img
+              src="assets/img/komdigi-logo.png"
+              width="80"
+              height="80"
+              alt="Kom Logo"
+              class="certification-logo"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Faq Section -->
+      <section id="faq" class="faq section">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center mb-5">
+            <h2 data-i18n="faq_header"></h2>
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <!-- FAQ Navigation -->
+              <ul
+                class="nav nav-pills mb-4 justify-content-center"
+                role="tablist"
+              >
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    data-bs-toggle="tab"
+                    data-bs-target="#faq-pengajuan"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    data-i18n="faq1_header"
+                  ></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    data-bs-target="#faq-pembayaran"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-i18n="faq2_header"
+                  ></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    data-bs-target="#faq-penggunaan"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-i18n="faq3_header"
+                  ></button>
+                </li>
+              </ul>
+
+              <!-- FAQ Content -->
+              <div class="tab-content" id="faqTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="faq-pengajuan"
+                  role="tabpanel"
+                >
+                  <div class="faq-container">
+                    <div class="faq-item faq-active">
+                      <h3 data-i18n="faq1_q1">
+                        Bagaimana cara mengajukan pinjaman?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a1">
+                          Unduh aplikasi Pilih Kredit, masuk ke aplikasi dan
+                          buat akun Anda, kemudian pilih produk pinjaman dan
+                          jumlah pinjaman yang Anda butuhkan lalu unduh produk
+                          pinjaman pilihan Anda. Lanjutkan dengan ajukan
+                          permohonan Anda dan mengisi informasi yang dibutuhkan,
+                          produk pinjaman akan meninjau permohonan Anda, setelah
+                          disetujui dana akan ditransfer ke rekening bank Anda.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q2">
+                        Berapa banyak yang bisa saya pinjam?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a2">
+                          Jumlah pinjaman yang ditawarkan oleh masing-masing
+                          produk pinjaman yang tersedia diaplikasi berbeda-beda.
+                          Dimulai dari Rp 1.000.000 – Rp 50.000.000
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q3">
+                        Apakah saya bisa pinjam jika tidak memiliki kartu
+                        kredit?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a3">
+                          Anda tidak harus memiliki kartu kredit untuk
+                          mengajukan pinjaman.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q4">
+                        Apakah pinjamannya pakai agunan?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a4">
+                          Untuk pinjaman yang ditawarkan adalah pinjaman tanpa
+                          agunan.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q5">
+                        Apa saja syarat yang harus dimiliki untuk pengajuan?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a5">
+                          - Warga Negara Indonesia <br />
+                          - Berusia 18 tahun keatas <br />
+                          - Memiliki eKTP <br />
+                          - Memiliki Rekening Bank
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q6">
+                        Apakah saya bisa meminjam jika tidak memiliki rekening
+                        bank?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a6">
+                          Anda harus memiliki rekening bank sebagai sarana untuk
+                          menerima dana pinjaman yang Anda ajukan.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q7">
+                        Bisakah mahasiswa / pengusaha /ibu rumah tangga meminjam
+                        uang?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a7">
+                          Untuk beberapa produk pinjaman memberikan kesempatan
+                          pinjaman bagi mahasiswa/pengusaha/ibu rumah tangga
+                          yang memiliki penghasilan.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q8">
+                        Mengapa pengajuan pinjaman saya ditolak?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a8">
+                          Masing-masing produk pinjaman yang tersedia di
+                          aplikasi akan melihat status kredit Anda untuk dapat
+                          memutuskan apakah pinjaman yang Anda ajukan akan
+                          disetujui atau ditolak. Serta pastikan informasi yang
+                          Anda berikan benar, lengkap dan dapat terverifikasi
+                          oleh produk pinjaman.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q9">
+                        Kenapa sudah disetujui tapi dana belum masuk?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a9">
+                          Umumnya pencairan dana memerlukan waktu 2x24 jam sejak
+                          Anda menerima notifikasi bahwa pinjaman telah
+                          disetujui.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q10">
+                        Apakah saya bisa mengajukan pinjaman untuk kedua
+                        kalinya?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a10">
+                          Anda bisa mengajukan pinjaman kembali setelah
+                          melakukan pelunasan pada pinjaman pertama.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q11">
+                        Kenapa diarahkan ke aplikasi lain?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a11">
+                          Kami informasikan bahwa Pilih Kredit merupakan
+                          aplikasi penyedia layanan informasi dan perbandingan
+                          produk pinjaman yang tercatat OJK, kami memberikan
+                          rekomendasi beberapa produk pinjaman yang bisa Anda
+                          ajukan melalui aplikasi Pilih kredit.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q12">
+                        Apakah bisa melakukan pinjaman di Pilih Kredit, jika
+                        punya pinjaman diaplikasi lain?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a12">
+                          Kemungkinan untuk situasi tertentu Anda bisa
+                          mengajukan lebih dari 1 pinjaman berjalan diaplikasi
+                          yang berbeda, namun kami menyarankan Anda untuk
+                          mengajukan pinjaman kembali setelah melunasi pinjaman
+                          berjalan diaplikasi sebelumnya.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q13">
+                        Berapa lama proses pengajuan?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a13">
+                          Proses verifikasi umumnya memerlukan waktu 1-3 hari,
+                          mohon pastikan nomor ponsel yang terdaftar dalam
+                          keadaan aktif untuk dihubungi oleh tim verifikasi
+                          produk pinjaman agar proses verifikasi Anda berjalan
+                          lancar.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq1_q14">
+                        Kenapa tidak bisa isi tambahkan rekening bank
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq1_a14">
+                          Pastikan nomor rekening yang ditambahkan dalam keadaan
+                          aktif, dan periksa kembali informasi bank Anda,
+                          seperti jenis bank dan nomor rekening. Apabila masih
+                          ada kendala, silakan menghubungi Customer Service
+                          kami.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="faq-pembayaran" role="tabpanel">
+                  <div class="faq-container">
+                    <div class="faq-item faq-active">
+                      <h3 data-i18n="faq2_q1">
+                        Bagaimana jika saya ingin melihat tagihan pinjaman?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a1">
+                          Anda bisa mengecek tagihan pinjaman melalui aplikasi
+                          pada halaman TAGIHAN.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q2">
+                        Bagaimana cara membayar setelah meminjam?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a2">
+                          Anda bisa melihat cara pembayaran melalui aplikasi,
+                          cara pembayaran berbeda-beda tergantung metode
+                          pembayaran yang tersedia pada aplikasi. Pembayaran
+                          dapat dilakukan ke salah satu dari virtual account
+                          yang tersedia pada menu pembayaran diaplikasi.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q3">
+                        Apa saja metode pembayarannya?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a3">
+                          Metode pembayaran yang disediakan masing-masing produk
+                          pinjaman berbeda-beda, Anda dapat melakukan pelunasan
+                          tagihan pinjaman dengan bayar melalui transfer ATM,
+                          Mobile Banking, Internet Banking, Virtual Account
+                          serta melalui konter minimarket rekanan melalui kode
+                          pembayaran yang disediakan di aplikasi.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q4">
+                        Apakah bisa melunasi sebelum jatuh tempo?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a4">
+                          Anda bisa melunasi pinjaman Anda sebelum jatuh tempo
+                          dengan mengikuti persyaratan dan ketentuan dari produk
+                          pinjaman yang Anda ajukan.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q5">
+                        Apakah saya bisa membayar dengan angsuran?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a5">
+                          Untuk pembayaran pinjaman tergantung dari
+                          masing-masing produk pinjaman dan jangka waktu
+                          pinjaman yang Anda ajukan, ada yang secara langsung
+                          maupun diangsur.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q6">
+                        Bagaimana jika pembayarannya telah melewati jatuh tempo?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a6">
+                          Untuk pembayaran yang telah jatuh tempo akandikenakan
+                          denda sesuai dengan kebijakan aplikasipinjaman yang
+                          kamu ajukan tersebut.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq2_q7">
+                        Berapa suku bunga pinjaman yang telah jatuh tempo?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq2_a7">
+                          Untuk hal tersebut tergantung dari berapa lama Anda
+                          telah melewati batas jatuh tempo pinjaman yang Anda
+                          ajukan serta tergantung dari kebijakan dan peraturan
+                          masing-masing produk pinjaman.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="faq-penggunaan" role="tabpanel">
+                  <div class="faq-container">
+                    <div class="faq-item faq-active">
+                      <h3 data-i18n="faq3_q1">
+                        Kenapa setelah klik "download dan pinjam" tetapi tidak
+                        terjadi apa-apa / freeze / error?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq3_a1">
+                          Anda bisa mencoba mengupdate aplikasi terlebih dahulu,
+                          dan jika masalah tetap terjadi Anda bisa mengirimkan
+                          email mengenai permasalahan Anda ke cs@pilihkredit.id
+                          atau WhatsApp dinomor 085117767799.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq3_q2">
+                        Bagaimana jika ponsel yang terdaftar gagal menerima kode
+                        verifikasi?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq3_a2">
+                          Anda bisa meminta kode verifikasi kembali dan pastikan
+                          jaringan operator Anda dalam kondisi stabil.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq3_q3">
+                        Bagaimana jika aplikasi terhenti dengan sendirinya?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq3_a3">
+                          Pastikan Anda memiliki memori yang cukup bagi aplikasi
+                          untuk beroperasi, Anda bisa membersihkan memory cache,
+                          lalu coba jalankan aplikasi kembali.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+
+                    <div class="faq-item">
+                      <h3 data-i18n="faq3_q4">
+                        Mengapa saya tidak dapat membuka aplikasi?
+                      </h3>
+                      <div class="faq-content">
+                        <p data-i18n="faq3_a4">
+                          Terkait kendala yang dialami, pastikan Anda sudah
+                          menggunakan aplikasi Pilih Kredit versi terbaru.
+                          Apabila masih terjadi masalah di aplikasi Anda.
+                          Silakan melaporkan detail permasalahan Anda ke email
+                          cs@pilihkredit.id atau ke WhatsApp dinomor
+                          085117767799.
+                        </p>
+                      </div>
+                      <i class="faq-toggle bi bi-chevron-right"></i>
+                    </div>
+                    <!-- End Faq item-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="about-card row align-items-center justify-content-center">
+            <div class="col-lg-5 about-info text-center text-lg-start">
+              <h3 class="about-badge" data-i18n="aboutus_nav"></h3>
+              <h2 class="about-title">PT. Estrend Teknologi Digital</h2>
+              <p class="about-desc" data-i18n="aboutus_short"></p>
+              <a href="#viewMoreModal" data-bs-toggle="modal" class="read-more">
+                <span data-i18n="read_more"></span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+            <div class="col-lg-7">
+              <div class="about-icons d-grid gap-4 grid-cols-2">
+                <div class="icon-box text-center">
+                  <i class="bi bi-buildings"></i>
+                  <h4 data-i18n="vision_header"></h4>
+                  <p data-i18n="vision_short"></p>
+                </div>
+                <div class="icon-box text-center">
+                  <i class="bi bi-clipboard-pulse"></i>
+                  <h4 data-i18n="mission_header"></h4>
+                  <p data-i18n="mission_short"></p>
+                </div>
+                <div class="icon-box text-center">
+                  <i class="bi bi-file-check"></i>
+                  <h4 data-i18n="ojk_header"></h4>
+                  <p data-i18n="ojk_short"></p>
+                </div>
+                <div class="icon-box text-center">
+                  <i class="bi bi-shield-shaded"></i>
+                  <h4 data-i18n="privacy_header"></h4>
+                  <p data-i18n="privacy_short"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /About Section -->
+    </main>
+
+    <footer id="footer" class="footer footer-background">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4">PT. Estrend Teknologi Digital</h3>
+
+            <div class="footer-address mb-4">
+              <p class="mb-2">
+                <i class="bi bi-geo-alt-fill"></i> Soho Capital, 19th Floor
+              </p>
+              <p class="mb-0">
+                Jalan Letjend S Parman kav 28, RT.3/RW.5, Tj. Duren Sel., Kec.
+                Grogol petamburan, Kota Jakarta Barat 11470
+              </p>
+            </div>
+
+            <!-- Map image and link -->
+            <div class="footer-map mb-4">
+              <a
+                href="https://maps.app.goo.gl/Kkg3nk6FMwU4TS6r6"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="assets/img/map.png"
+                  alt="Soho Capital Map"
+                  style="
+                    width: 100%;
+                    max-width: 260px;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px rgba(0, 98, 204, 0.1);
+                    margin-bottom: 8px;
+                  "
+                />
+                <div
+                  style="
+                    font-size: 14px;
+                    color: #fff;
+                    text-decoration: underline;
+                    display: inline-block;
+                    margin-top: 2px;
+                  "
+                ></div>
+              </a>
+            </div>
+
+            <div class="footer-contact mb-4">
+              <p class="mb-2">
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:cs@pilihkredit.id" class="footer-link"
+                  >cs@pilihkredit.id</a
+                >
+              </p>
+              <p class="mb-0">
+                <i class="bi bi-whatsapp"></i>
+                <a
+                  href="https://api.whatsapp.com/send?phone=6285117767799"
+                  target="_blank"
+                  class="footer-link"
+                  >085117767799</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4" data-i18n="useful_links">
+              Useful Links
+            </h3>
+            <ul class="footer-links">
+              <li>
+                <a href="#hero" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="home_nav"></span
+                ></a>
+              </li>
+              <li>
+                <a href="#features" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="feature_nav"></span
+                ></a>
+              </li>
+              <li>
+                <a href="#faq" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="faq_nav"></span
+                ></a>
+              </li>
+              <li>
+                <a href="#about" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="aboutus_nav"></span
+                ></a>
+              </li>
+              <li>
+                <a href="news.php" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="news_nav"></span
+                ></a>
+              </li>
+              <li>
+                <a href="./Privasi/ketentuan.html" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="terms_and_conditions"></span
+                ></a>
+              </li>
+              <li>
+                <a href="./Privasi/privasi.html" class="footer-link"
+                  ><i class="bi bi-chevron-right"></i>
+                  <span data-i18n="privacy_policy"></span
+                ></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4" data-i18n="download_app">
+              Download App
+            </h3>
+            <div class="download-badges mb-4">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.pilihid.kreditid.pilihkredit"
+                target="_blank"
+                class="d-inline-block mb-2 me-3"
+              >
+                <img
+                  src="assets/img/google.png"
+                  height="60"
+                  width="180"
+                  alt="Google Play"
+                  class="download-badge"
+                />
+              </a>
+              <a class="d-inline-block mb-2">
+                <img
+                  src="assets/img/apple.png"
+                  height="60"
+                  width="180"
+                  alt="App Store"
+                  class="download-badge"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-media-bar text-center mb-4">
+          <h4 class="mb-3" data-i18n="follow_us">Follow Us</h4>
+          <div class="social-links d-flex justify-content-center gap-3">
+            <a
+              href="https://www.facebook.com/PilihKredit.id/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pilihkredit.id/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <!-- <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a> -->
+            <a
+              href="https://www.linkedin.com/company/pilihkredit/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a
+              href="https://api.whatsapp.com/send?phone=6285117767799"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="attention-section py-4">
+          <h3 class="text-center mb-4" data-i18n="attention_header"></h3>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="attention-list">
+                <li data-i18n="attention1"></li>
+                <li data-i18n="attention2"></li>
+                <li data-i18n="attention3"></li>
+                <li data-i18n="attention4"></li>
+                <li data-i18n="attention5"></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="attention-list">
+                <li data-i18n="attention6"></li>
+                <li data-i18n="attention7"></li>
+                <li data-i18n="attention8"></li>
+                <li data-i18n="attention9"></li>
+                <li data-i18n="attention10"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright-section text-center py-4">
+          <div class="mb-3">
+            <a
+              href="./Privasi/ketentuan.html"
+              target="_blank"
+              class="footer-link mx-2"
+              data-i18n="terms_and_conditions"
+            ></a>
+            <span class="separator">|</span>
+            <a
+              href="./Privasi/privasi.html"
+              target="_blank"
+              class="footer-link mx-2"
+              data-i18n="privacy_policy"
+            ></a>
+          </div>
+          <p class="mb-0">
+            <span data-i18n="footer1"></span>
+            <span data-i18n="footer2"></span>
+            <span>&copy; 2025</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <div
+      class="modal fade"
+      id="viewMoreModal"
+      tabindex="-1"
+      aria-labelledby="viewMoreModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <h3 data-i18n="aboutus_nav"></h3>
+            <p data-i18n="aboutus_long1"></p>
+            <p data-i18n="aboutus_long2"></p>
+            <hr class="my-4" />
+            <h3 data-i18n="vision_header"></h3>
+            <p data-i18n="vision_long"></p>
+            <hr class="my-4" />
+            <h3 data-i18n="mission_header"></h3>
+            <p data-i18n="mission_long"></p>
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              data-i18n="close"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
