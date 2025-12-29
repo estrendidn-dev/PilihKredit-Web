@@ -1,0 +1,37 @@
+# Composer
+/vendor/
+composer.phar
+composer-setup.php
+
+# Environment and config files with secrets
+.env
+.env.local
+config/database_config.php
+config/oss_config.php
+config/oss_config.local.php
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+backup-*.tar.gz
+*.tar.gz
+
+# Temporary files
+tmp/
+temp/
+
