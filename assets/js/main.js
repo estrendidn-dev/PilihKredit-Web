@@ -6,6 +6,7 @@
   const ANIMATION_DELAY = 150;
   const isNewsPage = window.location.pathname.endsWith("news.php");
   const isContentPage = window.location.pathname.endsWith("content.php");
+  const isPdajaPage = window.location.pathname.endsWith("pdaja-ajukan.html");
 
   // DOM Elements
   const selectors = {
@@ -27,7 +28,7 @@
    */
   const headerHandlers = {
     toggleScrolled: () => {
-      if (isNewsPage || isContentPage) {
+      if (isNewsPage || isContentPage || isPdajaPage) {
         selectors.body.classList.add("scrolled");
         return;
       }
@@ -44,7 +45,7 @@
     },
 
     toggleScrolledLogo: () => {
-      if (isNewsPage || isContentPage) return;
+      if (isNewsPage || isContentPage || isPdajaPage) return;
       const scrollLogo = selectors.logo.getAttribute("data-scroll-logo");
       const originalLogo = "assets/img/logo_copy.png";
 
@@ -280,31 +281,37 @@
    */
   const initComponents = () => {
     // AOS initialization
-    AOS.init({
-      duration: 600,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-    });
+    if (typeof AOS !== "undefined") {
+      AOS.init({
+        duration: 600,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      });
+    }
 
     // Swiper initialization
-    document.querySelectorAll(".init-swiper").forEach((element) => {
-      let config = {};
-      if (element.closest("#partners")) {
-        config = swiperConfigs.partners;
-      } else {
-        const configScript = element.querySelector(".swiper-config");
-        if (configScript) {
-          config = JSON.parse(configScript.innerHTML.trim());
+    if (typeof Swiper !== "undefined") {
+      document.querySelectorAll(".init-swiper").forEach((element) => {
+        let config = {};
+        if (element.closest("#partners")) {
+          config = swiperConfigs.partners;
+        } else {
+          const configScript = element.querySelector(".swiper-config");
+          if (configScript) {
+            config = JSON.parse(configScript.innerHTML.trim());
+          }
         }
-      }
-      new Swiper(element, config);
-    });
+        new Swiper(element, config);
+      });
+    }
 
     // GLightbox initialization
-    GLightbox({
-      selector: ".glightbox",
-    });
+    if (typeof GLightbox !== "undefined") {
+      GLightbox({
+        selector: ".glightbox",
+      });
+    }
   };
 
   /**

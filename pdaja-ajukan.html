@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pengajuan Pinjaman - Pilih Kredit</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="description" content="Ajukan pinjaman dengan mudah" />
+    <meta name="keywords" content="pinjaman, kredit, pengajuan" />
+
+    <!-- Favicons -->
+    <link href="assets/img/logo_2.png" rel="icon" />
+    <link href="assets/img/logo_2.png" rel="apple-touch-icon" />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet" />
+
+    <style>
+      /* Confirmation Modal Styles */
+      .confirmation-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(4px);
+      }
+
+      .confirmation-modal {
+        background: #fff;
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 450px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        animation: modalSlideIn 0.3s ease;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .confirmation-modal-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #f0f7ff, #e8f4fd);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+      }
+
+      .confirmation-modal-icon i {
+        font-size: 32px;
+        color: #0062cc;
+      }
+
+      .confirmation-modal h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 12px;
+      }
+
+      .confirmation-modal p {
+        color: #6c757d;
+        font-size: 15px;
+        margin-bottom: 32px;
+        line-height: 1.6;
+      }
+
+      .confirmation-modal-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+      }
+
+      .btn-modal-no {
+        padding: 14px 36px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        border: 2px solid #e0e0e0;
+        background: #fff;
+        color: #6c757d;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-modal-no:hover {
+        background: #f8f9fa;
+        border-color: #cc2229;
+        color: #cc2229;
+      }
+
+      .btn-modal-yes {
+        padding: 14px 36px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        border: none;
+        background: linear-gradient(135deg, #0062cc, #0077ed);
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 98, 204, 0.3);
+      }
+
+      .btn-modal-yes:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 98, 204, 0.4);
+      }
+
+      .confirmation-modal-overlay.hidden {
+        display: none;
+        pointer-events: none;
+      }
+
+      /* Data Confirmation Summary Styles */
+      .confirmation-summary {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .summary-section {
+        margin-bottom: 24px;
+      }
+
+      .summary-section:last-child {
+        margin-bottom: 0;
+      }
+
+      .summary-section-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #0062cc;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .summary-row:last-child {
+        border-bottom: none;
+      }
+
+      .summary-label {
+        color: #6c757d;
+        font-size: 14px;
+        flex: 1;
+      }
+
+      .summary-value {
+        color: #1a1a2e;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: right;
+        flex: 1;
+      }
+
+      .confirmation-note {
+        background: linear-gradient(135deg, #fff3cd, #ffeeba);
+        border: 1px solid #ffc107;
+        border-radius: 12px;
+        padding: 16px;
+        margin-top: 24px;
+      }
+
+      .confirmation-note p {
+        margin: 0;
+        color: #856404;
+        font-size: 14px;
+      }
+
+      .confirmation-note i {
+        color: #ffc107;
+        margin-right: 8px;
+      }
+
+      .edit-btn {
+        color: #0062cc;
+        font-size: 12px;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .edit-btn:hover {
+        color: #004a9f;
+      }
+
+      /* Dropdown Multiselect Styles */
+      .multiselect-dropdown {
+        position: relative;
+        width: 100%;
+      }
+
+      .multiselect-dropdown .dropdown-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        background: #fafafa;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        transition: all 0.2s ease;
+      }
+
+      .multiselect-dropdown .dropdown-btn:hover {
+        border-color: #0062cc;
+      }
+
+      .multiselect-dropdown .dropdown-btn i {
+        transition: transform 0.2s ease;
+      }
+
+      .multiselect-dropdown.open .dropdown-btn i {
+        transform: rotate(180deg);
+      }
+
+      .multiselect-dropdown .dropdown-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        margin-top: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 100;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .multiselect-dropdown.open .dropdown-list {
+        display: block;
+      }
+
+      .multiselect-dropdown .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .multiselect-dropdown .dropdown-item:hover {
+        background: #f0f7ff;
+      }
+
+      .multiselect-dropdown .dropdown-item input {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+        accent-color: #0062cc;
+        cursor: pointer;
+      }
+
+      .multiselect-dropdown .dropdown-item label {
+        flex: 1;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        margin: 0;
+      }
+
+      .multiselect-dropdown .selected-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        flex: 1;
+        min-height: 20px;
+      }
+
+      .multiselect-dropdown .tag {
+        background: #e8f0fe;
+        color: #0062cc;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .multiselect-dropdown .tag .remove-tag {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .multiselect-dropdown .tag .remove-tag:hover {
+        color: #004a9f;
+      }
+
+      /* Success Screen Styles */
+      .success-screen {
+        display: none;
+        text-align: center;
+        padding: 60px 40px;
+        margin-top: 120px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .success-screen.show {
+        display: block;
+      }
+
+      .success-icon {
+        width: 120px;
+        height: 120px;
+        background: linear-gradient(135deg, #d4edda, #c3e6cb);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 32px;
+        animation: successPop 0.5s ease;
+      }
+
+      @keyframes successPop {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .success-icon i {
+        font-size: 60px;
+        color: #28a745;
+      }
+
+      .success-screen h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 16px;
+      }
+
+      .success-screen p {
+        color: #6c757d;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .application-id-box {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border: 2px dashed #0062cc;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 32px;
+        display: inline-block;
+      }
+
+      .application-id-box span {
+        display: block;
+        font-size: 14px;
+        color: #6c757d;
+        margin-bottom: 8px;
+      }
+
+      .application-id-box strong {
+        font-size: 28px;
+        color: #0062cc;
+        font-weight: 700;
+      }
+
+      .success-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-success-home {
+        background: linear-gradient(135deg, #0062cc, #0077ed);
+        color: #fff;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        border: none;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-success-home:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 98, 204, 0.4);
+        color: #fff;
+      }
+
+      /* Page specific styles */
+      .application-section {
+        padding: 120px 0 80px;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      }
+
+      .application-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      /* Brand Collaboration Styles */
+      .brand-collab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .brand-pilihkredit {
+        color: #0062cc;
+      }
+
+      .brand-x {
+        color: #6c757d;
+        font-weight: 400;
+      }
+
+      .brand-pdaja {
+        color: #cc2229;
+      }
+
+      .application-header h1 {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #6c757d;
+        margin-bottom: 0;
+      }
+
+      .application-card {
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        padding: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Step Tabs */
+      .step-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .step-tab {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 2px solid #e9ecef;
+        background: #fff;
+        color: #6c757d;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .step-tab i {
+        font-size: 16px;
+      }
+
+      .step-tab.active {
+        background: linear-gradient(135deg, #dc6b4a, #c85a3a);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: 0 4px 15px rgba(220, 107, 74, 0.3);
+      }
+
+      .step-tab.completed {
+        background: #e8f5e9;
+        color: #2e7d32;
+        border-color: #a5d6a7;
+      }
+
+      /* Form Styles */
+      .form-section {
+        margin-bottom: 32px;
+      }
+
+      .form-section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: #1a1a2e;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .form-label .required {
+        color: #dc6b4a;
+      }
+
+      .form-label small {
+        font-weight: 400;
+        color: #6c757d;
+      }
+
+      .form-control,
+      .form-select {
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-size: 15px;
+        transition: all 0.3s ease;
+        background-color: #fafafa;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #dc6b4a;
+        box-shadow: 0 0 0 3px rgba(220, 107, 74, 0.1);
+        background-color: #fff;
+      }
+
+      .form-control::placeholder {
+        color: #adb5bd;
+      }
+
+      /* Validation Error Styles */
+      .form-control.is-invalid,
+      .form-select.is-invalid {
+        border-color: #dc3545;
+        background-color: #fff8f8;
+      }
+
+      .form-control.is-invalid:focus,
+      .form-select.is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+      }
+
+      .invalid-feedback {
+        display: block;
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 6px;
+        font-weight: 500;
+      }
+
+      .input-group .invalid-feedback {
+        position: absolute;
+        bottom: -22px;
+        left: 0;
+      }
+
+      .input-group {
+        position: relative;
+      }
+
+      /* Map Container */
+
+      /* Submit Button */
+      .btn-submit {
+        background: linear-gradient(135deg, #1a1a2e, #2d2d44);
+        color: #fff;
+        padding: 16px 48px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(26, 26, 46, 0.3);
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(26, 26, 46, 0.4);
+        color: #fff;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      /* Radio Questions Styles */
+      .radio-questions {
+        background: #fff;
+      }
+
+      .radio-question-item {
+        padding: 16px 0;
+      }
+
+      .radio-question-item .question-text {
+        font-weight: 600;
+        color: #1a1a2e;
+        font-size: 14px;
+      }
+
+      .radio-options {
+        min-width: 140px;
+        justify-content: flex-end;
+      }
+
+      .form-check {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .form-check-input {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #dc6b4a;
+        cursor: pointer;
+      }
+
+      .form-check-input:checked {
+        background-color: #dc6b4a;
+        border-color: #dc6b4a;
+      }
+
+      .form-check-input:focus {
+        box-shadow: 0 0 0 3px rgba(220, 107, 74, 0.2);
+        border-color: #dc6b4a;
+      }
+
+      .form-check-label {
+        font-size: 14px;
+        color: #6c757d;
+        cursor: pointer;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .application-card {
+          padding: 24px;
+          margin: 0 16px;
+        }
+        .application-header h1 {
+          font-size: 1.75rem;
+        }
+
+        .step-tabs {
+          gap: 8px;
+        }
+
+        .step-tab {
+          padding: 10px 16px;
+          font-size: 12px;
+        }
+
+        .form-actions {
+          justify-content: center;
+        }
+
+        .form-actions .d-flex {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .form-actions .d-flex > div {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .btn-submit {
+          width: 100%;
+        }
+
+        .btn-outline-secondary {
+          width: 100%;
+        }
+
+        .radio-question-item {
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: 12px;
+        }
+
+        .radio-options {
+          width: 100%;
+          justify-content: flex-start !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="index-page scrolled">
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal-overlay" id="confirmationModal">
+      <div class="confirmation-modal">
+        <div class="confirmation-modal-icon">
+          <i class="bi bi-question-circle"></i>
+        </div>
+        <h2>Konfirmasi Pengajuan</h2>
+        <p>
+          Apakah Anda memiliki agunan (jaminan) untuk melanjutkan pengajuan
+          pinjaman?
+        </p>
+        <div class="confirmation-modal-buttons">
+          <button class="btn-modal-no" onclick="closeTab()">Tidak</button>
+          <button class="btn-modal-yes" onclick="continueForm()">
+            Ya, Lanjutkan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <i class="bi bi-check-lg"></i>
+      </div>
+      <h2>Pengajuan Berhasil Dikirim!</h2>
+      <p>
+        Terima kasih telah mengajukan pinjaman melalui Pilih Kredit x PDaja.<br />
+        Tim PDaja akan segera menghubungi Anda untuk proses selanjutnya.
+      </p>
+      <div class="success-actions">
+        <a href="index.html" class="btn-success-home">
+          <i class="bi bi-house"></i> Kembali ke Beranda
+        </a>
+      </div>
+    </div>
+
+    <!-- Header from index.html -->
+    <header
+      id="header"
+      class="header d-flex align-items-center fixed-top scrolled"
+    >
+      <div class="mobile-nav-overlay"></div>
+      <div
+        class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between"
+      >
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img
+            src="assets/img/logo_filled.png"
+            alt="Pilih Kredit Logo"
+            width="270"
+            height="400"
+            class="img-fluid"
+          />
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li>
+              <a
+                href="index.html#hero"
+                class="nav-link"
+                data-i18n="home_nav"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="index.html#features"
+                class="nav-link"
+                data-i18n="feature_nav"
+              ></a>
+            </li>
+            <li>
+              <a href="index.html#faq" class="nav-link" data-i18n="faq_nav"></a>
+            </li>
+            <li>
+              <a
+                href="index.html#about"
+                class="nav-link"
+                data-i18n="aboutus_nav"
+              ></a>
+            </li>
+            <li>
+              <a href="news.php" class="nav-link" data-i18n="news_nav"></a>
+            </li>
+            <li class="language-selector">
+              <img
+                class="indonesia flag-icon"
+                src="assets/img/flag-indo.png"
+                height="28"
+                width="28"
+                onclick="changeLanguage('id')"
+                alt="Indonesia"
+              />
+              <img
+                class="english flag-icon"
+                src="assets/img/flag-usa.png"
+                height="28"
+                width="28"
+                onclick="changeLanguage('en')"
+                alt="English"
+              />
+            </li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- Application Form Section -->
+      <section class="application-section">
+        <div class="container">
+          <!-- Header -->
+          <div class="application-header" data-aos="fade-up">
+            <div class="brand-collab">
+              <span class="brand-pilihkredit">Pilih Kredit</span>
+              <span class="brand-x">x</span>
+              <span class="brand-pdaja">PDaja</span>
+            </div>
+            <h1>Lengkapi Data Berikut, Pengajuan Siap Diproses</h1>
+          </div>
+
+          <!-- Application Card -->
+          <div class="application-card" data-aos="fade-up" data-aos-delay="100">
+            <!-- Step Tabs -->
+            <div class="step-tabs">
+              <div class="step-tab active" data-step="1">
+                <i class="bi bi-person"></i>
+                <span>Data Diri</span>
+              </div>
+              <div class="step-tab" data-step="2">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Data Jaminan</span>
+              </div>
+              <div class="step-tab" data-step="3">
+                <i class="bi bi-clipboard-check"></i>
+                <span>Data Pengajuan</span>
+              </div>
+            </div>
+
+            <!-- Form -->
+            <form id="applicationForm">
+              <!-- Step 1: Data Diri -->
+              <div class="form-step" id="step1">
+                <div class="row g-4">
+                  <!-- Nama -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Nama<span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="nama"
+                      placeholder="Masukkan nama lengkap"
+                      required
+                    />
+                  </div>
+
+                  <!-- No. Handphone -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >No. Handphone
+                      <small>(yang terhubung dengan WhatsApp)</small
+                      ><span class="required">*</span></label
+                    >
+                    <input
+                      type="tel"
+                      class="form-control"
+                      name="handphone"
+                      placeholder="08xxxxxxxxxx"
+                      required
+                    />
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Email<span class="required">*</span></label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="email@example.com"
+                      required
+                    />
+                  </div>
+
+                  <!-- Pekerjaan -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Pekerjaan<span class="required">*</span></label
+                    >
+                    <select class="form-select" name="pekerjaan" required>
+                      <option value="" disabled selected>
+                        Pilih pekerjaan
+                      </option>
+                      <option value="karyawan_swasta">Karyawan Swasta</option>
+                      <option value="pns">PNS</option>
+                      <option value="bumn">BUMN</option>
+                      <option value="pengusaha">Pengusaha</option>
+                      <option value="profesional">Profesional</option>
+                      <option value="lainnya">Lainnya</option>
+                    </select>
+                  </div>
+
+                  <!-- Pendapatan -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Pendapatan/Keuntungan Per Bulan<span class="required"
+                        >*</span
+                      ></label
+                    >
+                    <div class="input-group">
+                      <span
+                        class="input-group-text"
+                        style="
+                          border-radius: 12px 0 0 12px;
+                          background: #fafafa;
+                          border-color: #e0e0e0;
+                        "
+                        >Rp</span
+                      >
+                      <input
+                        type="text"
+                        class="form-control currency-input"
+                        name="pendapatan"
+                        placeholder="0"
+                        style="border-radius: 0 12px 12px 0"
+                        inputmode="numeric"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Jaminan -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Jaminan<span class="required">*</span></label
+                    >
+                    <select class="form-select" name="jaminan" required>
+                      <option value="" disabled selected>Pilih jaminan</option>
+                      <option value="apartemen">Apartemen</option>
+                      <option value="rumah">Rumah</option>
+                      <option value="ruko">Ruko</option>
+                      <option value="gudang">Gudang</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Self Assessment Section -->
+                <div class="form-section mt-5">
+                  <h3 class="form-section-title">
+                    Penilaian Mandiri<br /><small
+                      style="font-weight: 400; color: #6c757d"
+                      >(Self Assessment)</small
+                    >
+                  </h3>
+
+                  <div class="row g-4">
+                    <!-- Tujuan Pinjaman -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Tujuan Pinjaman<span class="required">*</span></label
+                      >
+                      <select
+                        class="form-select"
+                        name="tujuan_pinjaman"
+                        required
+                      >
+                        <option value="" disabled selected>Pilih tujuan</option>
+                        <option value="konsumtif">Konsumtif</option>
+                        <option value="produktif">Produktif</option>
+                      </select>
+                    </div>
+
+                    <!-- Pinjaman Berjaminan Saat Ini -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Pinjaman Berjaminan Saat Ini<span class="required"
+                          >*</span
+                        ></label
+                      >
+                      <select
+                        class="form-select"
+                        name="pinjaman_berjaminan"
+                        required
+                      >
+                        <option value="" disabled selected>Pilih jenis</option>
+                        <option value="kpr">KPR</option>
+                        <option value="kredit_modal_kerja">
+                          Kredit Modal Kerja
+                        </option>
+                        <option value="kredit_kepemilikan_motor">
+                          Kredit Kepemilikan Motor
+                        </option>
+                        <option value="investasi">Investasi</option>
+                        <option value="lainnya">Lainnya</option>
+                        <option value="tidak_ada">Tidak Ada</option>
+                      </select>
+                    </div>
+
+                    <!-- Riwayat Pembayaran Berjaminan -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Riwayat Pembayaran Per Bulan Saat Ini<br /><small
+                          >(Pinjaman Berjaminan)</small
+                        ><span class="required">*</span></label
+                      >
+                      <select
+                        class="form-select"
+                        name="riwayat_berjaminan"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Pilih riwayat
+                        </option>
+                        <option value="lancar">
+                          Lancar, selalu tepat waktu
+                        </option>
+                        <option value="terlambat_1_30">
+                          Terlambat antara 1-30 hari
+                        </option>
+                        <option value="terlambat_30_90">
+                          Terlambat antara 30-90 hari
+                        </option>
+                        <option value="terlambat_90_lebih">
+                          Terlambat diatas 90 hari
+                        </option>
+                      </select>
+                    </div>
+
+                    <!-- Pinjaman Non-Berjaminan Saat Ini -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Pinjaman Saat Ini<br /><small
+                          >(Pinjaman Non-Berjaminan)</small
+                        ><span class="required">*</span></label
+                      >
+                      <div
+                        class="multiselect-dropdown"
+                        id="pinjamanMultiselect"
+                      >
+                        <div class="dropdown-btn" onclick="toggleMultiselect()">
+                          <div class="selected-tags" id="selectedTags">
+                            Pilih jenis pinjaman
+                          </div>
+                          <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="dropdown-list">
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="kartu_kredit"
+                              id="pnb_kartu_kredit"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_kartu_kredit">Kartu Kredit</label>
+                          </div>
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="paylater"
+                              id="pnb_paylater"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_paylater">Paylater</label>
+                          </div>
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="pinjaman_online"
+                              id="pnb_pinjaman_online"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_pinjaman_online"
+                              >Pinjaman Online</label
+                            >
+                          </div>
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="kta"
+                              id="pnb_kta"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_kta">KTA</label>
+                          </div>
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="lainnya"
+                              id="pnb_lainnya"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_lainnya">Lainnya</label>
+                          </div>
+                          <div class="dropdown-item">
+                            <input
+                              type="checkbox"
+                              name="pinjaman_non_berjaminan[]"
+                              value="tidak_ada"
+                              id="pnb_tidak_ada"
+                              onchange="updateSelectedTags()"
+                            />
+                            <label for="pnb_tidak_ada">Tidak Ada</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Riwayat Pembayaran Non-Berjaminan -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Riwayat Pembayaran Per Bulan Saat Ini<br /><small
+                          >(Pinjaman Non-Berjaminan)</small
+                        ><span class="required">*</span></label
+                      >
+                      <select
+                        class="form-select"
+                        name="riwayat_non_berjaminan"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Pilih riwayat
+                        </option>
+                        <option value="lancar">
+                          Lancar, selalu tepat waktu
+                        </option>
+                        <option value="terlambat_1_30">
+                          Terlambat antara 1-30 hari
+                        </option>
+                        <option value="terlambat_30_90">
+                          Terlambat antara 30-90 hari
+                        </option>
+                        <option value="terlambat_90_lebih">
+                          Terlambat diatas 90 hari
+                        </option>
+                      </select>
+                    </div>
+
+                    <!-- Total Kewajiban -->
+                    <div class="col-md-6">
+                      <label class="form-label"
+                        >Total Kewajiban Perbulan Saat Ini<br /><small
+                          >&nbsp;</small
+                        ><span class="required">*</span></label
+                      >
+                      <div class="input-group">
+                        <span
+                          class="input-group-text"
+                          style="
+                            border-radius: 12px 0 0 12px;
+                            background: #fafafa;
+                            border-color: #e0e0e0;
+                          "
+                          >Rp</span
+                        >
+                        <input
+                          type="text"
+                          class="form-control currency-input"
+                          name="total_kewajiban"
+                          placeholder="0"
+                          style="border-radius: 0 12px 12px 0"
+                          inputmode="numeric"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                  <button
+                    type="button"
+                    class="btn btn-submit"
+                    onclick="nextStep(2)"
+                  >
+                    Selanjutnya
+                  </button>
+                </div>
+              </div>
+
+              <!-- Step 2: Data Jaminan (Hidden initially) -->
+              <div class="form-step d-none" id="step2">
+                <div class="row g-4">
+                  <!-- Alamat -->
+                  <div class="col-12">
+                    <label class="form-label"
+                      >Alamat<span class="required">*</span></label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="alamat_jaminan"
+                      placeholder="Masukkan alamat jaminan"
+                      required
+                    />
+                  </div>
+
+                  <!-- Luas Tanah -->
+                  <div class="col-md-4">
+                    <label class="form-label"
+                      >Luas Tanah<span class="required">*</span></label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="luas_tanah"
+                        placeholder="0"
+                        required
+                      />
+                      <span
+                        class="input-group-text"
+                        style="background: #fafafa; border-color: #e0e0e0"
+                        >m²</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Luas Bangunan -->
+                  <div class="col-md-4">
+                    <label class="form-label"
+                      >Luas Bangunan<span class="required">*</span></label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="number"
+                        class="form-control"
+                        name="luas_bangunan"
+                        placeholder="0"
+                        required
+                      />
+                      <span
+                        class="input-group-text"
+                        style="background: #fafafa; border-color: #e0e0e0"
+                        >m²</span
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Dokumen Jaminan -->
+                  <div class="col-md-4">
+                    <label class="form-label"
+                      >Dokumen Jaminan<span class="required">*</span></label
+                    >
+                    <select class="form-select" name="dokumen_jaminan" required>
+                      <option value="" disabled selected>Pilih dokumen</option>
+                      <option value="shm">SHM</option>
+                      <option value="shgb">SHGB</option>
+                      <option value="shmsrs">SHMSRS</option>
+                    </select>
+                  </div>
+
+                  <!-- Pemilik Sertifikat -->
+                  <div class="col-md-6">
+                    <label class="form-label"
+                      >Pemilik Sertifikat<span class="required">*</span></label
+                    >
+                    <select
+                      class="form-select"
+                      name="pemilik_sertifikat"
+                      required
+                    >
+                      <option value="" disabled selected>Pilih pemilik</option>
+                      <option value="milik_sendiri">Milik Sendiri</option>
+                      <option value="pasangan">Pasangan</option>
+                      <option value="orang_tua">Orang Tua</option>
+                      <option value="anak">Anak</option>
+                    </select>
+                  </div>
+
+                  <!-- Radio Questions Section -->
+                  <div class="col-12 mt-4">
+                    <div class="radio-questions">
+                      <!-- Question 1 -->
+                      <div
+                        class="radio-question-item d-flex justify-content-between align-items-center py-3 border-bottom"
+                      >
+                        <span class="question-text"
+                          >Apakah jaminan merupakan tempat tinggal Anda?</span
+                        >
+                        <div class="radio-options d-flex gap-4">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="tempat_tinggal"
+                              id="tinggal_ya"
+                              value="ya"
+                            />
+                            <label class="form-check-label" for="tinggal_ya"
+                              >Ya</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="tempat_tinggal"
+                              id="tinggal_tidak"
+                              value="tidak"
+                              checked
+                            />
+                            <label class="form-check-label" for="tinggal_tidak"
+                              >Tidak</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Question 2 -->
+                      <div
+                        class="radio-question-item d-flex justify-content-between align-items-center py-3 border-bottom"
+                      >
+                        <span class="question-text"
+                          >Apakah jaminan merupakan tempat usaha Anda?</span
+                        >
+                        <div class="radio-options d-flex gap-4">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="tempat_usaha"
+                              id="usaha_ya"
+                              value="ya"
+                            />
+                            <label class="form-check-label" for="usaha_ya"
+                              >Ya</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="tempat_usaha"
+                              id="usaha_tidak"
+                              value="tidak"
+                              checked
+                            />
+                            <label class="form-check-label" for="usaha_tidak"
+                              >Tidak</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Question 3 -->
+                      <div
+                        class="radio-question-item d-flex justify-content-between align-items-center py-3 border-bottom"
+                      >
+                        <span class="question-text"
+                          >Apakah jaminan ini sedang disewakan?</span
+                        >
+                        <div class="radio-options d-flex gap-4">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="disewakan"
+                              id="sewa_ya"
+                              value="ya"
+                            />
+                            <label class="form-check-label" for="sewa_ya"
+                              >Ya</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="disewakan"
+                              id="sewa_tidak"
+                              value="tidak"
+                              checked
+                            />
+                            <label class="form-check-label" for="sewa_tidak"
+                              >Tidak</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Question 4 -->
+                      <div
+                        class="radio-question-item d-flex justify-content-between align-items-center py-3"
+                      >
+                        <span class="question-text"
+                          >Apakah jaminan ini sedang dijadikan jaminan
+                          kredit?</span
+                        >
+                        <div class="radio-options d-flex gap-4">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="jaminan_kredit"
+                              id="kredit_ya"
+                              value="ya"
+                            />
+                            <label class="form-check-label" for="kredit_ya"
+                              >Ya</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="jaminan_kredit"
+                              id="kredit_tidak"
+                              value="tidak"
+                              checked
+                            />
+                            <label class="form-check-label" for="kredit_tidak"
+                              >Tidak</label
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                  <div
+                    class="d-flex justify-content-between align-items-center w-100"
+                  >
+                    <small class="text-muted"
+                      >*Nilai pinjaman ini merupakan nilai pinjaman
+                      indikatif</small
+                    >
+                    <div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-secondary me-3"
+                        onclick="prevStep(1)"
+                      >
+                        Kembali
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-submit"
+                        onclick="nextStep(3)"
+                      >
+                        Hitung Perkiraan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3: Konfirmasi Data (Hidden initially) -->
+              <div class="form-step d-none" id="step3">
+                <div class="row g-4">
+                  <div class="col-12">
+                    <h4 class="mb-1">Konfirmasi Data Pengajuan</h4>
+                    <p class="text-muted mb-4">
+                      Silakan periksa kembali data Anda sebelum mengirim
+                      pengajuan.
+                    </p>
+
+                    <!-- Data Diri Summary -->
+                    <div class="confirmation-summary">
+                      <div class="summary-section">
+                        <div
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <h5 class="summary-section-title mb-0">Data Diri</h5>
+                          <span class="edit-btn" onclick="prevStep(1)"
+                            ><i class="bi bi-pencil"></i> Edit</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Nama</span>
+                          <span class="summary-value" id="summary-nama">-</span>
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">No. Handphone</span>
+                          <span class="summary-value" id="summary-handphone"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Email</span>
+                          <span class="summary-value" id="summary-email"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Pekerjaan</span>
+                          <span class="summary-value" id="summary-pekerjaan"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Pendapatan/Bulan</span>
+                          <span class="summary-value" id="summary-pendapatan"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Jaminan</span>
+                          <span class="summary-value" id="summary-jaminan"
+                            >-</span
+                          >
+                        </div>
+                      </div>
+
+                      <div class="summary-section">
+                        <div
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <h5 class="summary-section-title mb-0">
+                            Penilaian Mandiri
+                          </h5>
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Tujuan Pinjaman</span>
+                          <span class="summary-value" id="summary-tujuan"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label"
+                            >Pinjaman Saat Ini (Non-Berjaminan)</span
+                          >
+                          <span class="summary-value" id="summary-pinjaman-non"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label"
+                            >Total Kewajiban/Bulan</span
+                          >
+                          <span class="summary-value" id="summary-kewajiban"
+                            >-</span
+                          >
+                        </div>
+                      </div>
+
+                      <div class="summary-section">
+                        <div
+                          class="d-flex justify-content-between align-items-center"
+                        >
+                          <h5 class="summary-section-title mb-0">
+                            Data Jaminan
+                          </h5>
+                          <span class="edit-btn" onclick="prevStep(2)"
+                            ><i class="bi bi-pencil"></i> Edit</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Alamat Jaminan</span>
+                          <span
+                            class="summary-value"
+                            id="summary-alamat-jaminan"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Luas Tanah</span>
+                          <span class="summary-value" id="summary-luas-tanah"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Luas Bangunan</span>
+                          <span class="summary-value" id="summary-luas-bangunan"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Dokumen Jaminan</span>
+                          <span class="summary-value" id="summary-dokumen"
+                            >-</span
+                          >
+                        </div>
+                        <div class="summary-row">
+                          <span class="summary-label">Pemilik Sertifikat</span>
+                          <span class="summary-value" id="summary-pemilik"
+                            >-</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="confirmation-note">
+                      <p>
+                        <i class="bi bi-info-circle-fill"></i> Dengan mengirim
+                        pengajuan ini, Anda menyetujui bahwa data yang diberikan
+                        adalah benar dan dapat dipertanggungjawabkan.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary me-3"
+                    onclick="prevStep(2)"
+                  >
+                    Kembali
+                  </button>
+                  <button type="submit" class="btn btn-submit">
+                    <i class="bi bi-send me-2"></i>Kirim Pengajuan
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer from index.html -->
+    <footer id="footer" class="footer footer-background">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4">PT. Estrend Teknologi Digital</h3>
+
+            <div class="footer-address mb-4">
+              <p class="mb-2">
+                <i class="bi bi-geo-alt-fill"></i> Soho Capital, 19th Floor
+              </p>
+              <p class="mb-0">
+                Jalan Letjend S Parman kav 28, RT.3/RW.5, Tj. Duren Sel., Kec.
+                Grogol petamburan, Kota Jakarta Barat 11470
+              </p>
+            </div>
+
+            <div class="footer-contact mb-4">
+              <p class="mb-2">
+                <i class="bi bi-envelope-fill"></i>
+                <a href="mailto:cs@pilihkredit.id" class="footer-link"
+                  >cs@pilihkredit.id</a
+                >
+              </p>
+              <p class="mb-0">
+                <i class="bi bi-whatsapp"></i>
+                <a
+                  href="https://api.whatsapp.com/send?phone=6285117767799"
+                  target="_blank"
+                  class="footer-link"
+                  >085117767799</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4" data-i18n="useful_links">
+              Useful Links
+            </h3>
+            <ul class="footer-links">
+              <li>
+                <a href="index.html#hero" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="home_nav"></span>
+                </a>
+              </li>
+              <li>
+                <a href="index.html#features" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="feature_nav"></span>
+                </a>
+              </li>
+              <li>
+                <a href="index.html#faq" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="faq_nav"></span>
+                </a>
+              </li>
+              <li>
+                <a href="index.html#about" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="aboutus_nav"></span>
+                </a>
+              </li>
+              <li>
+                <a href="news.php" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="news_nav"></span>
+                </a>
+              </li>
+              <li>
+                <a href="./Privasi/ketentuan.html" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="terms_and_conditions"></span>
+                </a>
+              </li>
+              <li>
+                <a href="./Privasi/privasi.html" class="footer-link">
+                  <i class="bi bi-chevron-right"></i>
+                  <span data-i18n="privacy_policy"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 mb-4 mb-md-0">
+            <h3 class="footer-title mb-4" data-i18n="download_app">
+              Download App
+            </h3>
+            <div class="download-badges mb-4">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.pilihid.kreditid.pilihkredit"
+                target="_blank"
+                class="d-inline-block mb-2 me-3"
+              >
+                <img
+                  src="assets/img/google.png"
+                  height="60"
+                  width="180"
+                  alt="Google Play"
+                  class="download-badge"
+                />
+              </a>
+              <a class="d-inline-block mb-2">
+                <img
+                  src="assets/img/apple.png"
+                  height="60"
+                  width="180"
+                  alt="App Store"
+                  class="download-badge"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-media-bar text-center mb-4">
+          <h4 class="mb-3" data-i18n="follow_us">Follow Us</h4>
+          <div class="social-links d-flex justify-content-center gap-3">
+            <a
+              href="https://www.facebook.com/PilihKredit.id/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/pilihkredit.id/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/company/pilihkredit/"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a
+              href="https://api.whatsapp.com/send?phone=6285117767799"
+              target="_blank"
+              class="social-btn"
+              ><i class="bi bi-whatsapp"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="attention-section py-4">
+          <h3 class="text-center mb-4" data-i18n="attention_header"></h3>
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="attention-list">
+                <li data-i18n="attention1"></li>
+                <li data-i18n="attention2"></li>
+                <li data-i18n="attention3"></li>
+                <li data-i18n="attention4"></li>
+                <li data-i18n="attention5"></li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="attention-list">
+                <li data-i18n="attention6"></li>
+                <li data-i18n="attention7"></li>
+                <li data-i18n="attention8"></li>
+                <li data-i18n="attention9"></li>
+                <li data-i18n="attention10"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright-section text-center py-4">
+          <div class="mb-3">
+            <a
+              href="./Privasi/ketentuan.html"
+              target="_blank"
+              class="footer-link mx-2"
+              data-i18n="terms_and_conditions"
+            ></a>
+            <span class="separator">|</span>
+            <a
+              href="./Privasi/privasi.html"
+              target="_blank"
+              class="footer-link mx-2"
+              data-i18n="privacy_policy"
+            ></a>
+          </div>
+          <p class="mb-0">
+            <span data-i18n="footer1"></span>
+            <span data-i18n="footer2"></span>
+            <span>&copy; 2025</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+    >
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 600,
+        easing: "ease-in-out",
+        once: true,
+      });
+
+      // Dropdown Multiselect Functions
+      const pinjamanLabels = {
+        kartu_kredit: "Kartu Kredit",
+        paylater: "Paylater",
+        pinjaman_online: "Pinjaman Online",
+        kta: "KTA",
+        lainnya: "Lainnya",
+        tidak_ada: "Tidak Ada",
+      };
+
+      function toggleMultiselect() {
+        const dropdown = document.getElementById("pinjamanMultiselect");
+        dropdown.classList.toggle("open");
+      }
+
+      function updateSelectedTags() {
+        const checkboxes = document.querySelectorAll(
+          'input[name="pinjaman_non_berjaminan[]"]:checked'
+        );
+        const tagsContainer = document.getElementById("selectedTags");
+
+        if (checkboxes.length === 0) {
+          tagsContainer.textContent = "Pilih jenis pinjaman";
+        } else {
+          tagsContainer.innerHTML = "";
+          checkboxes.forEach((cb) => {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.innerHTML = `${
+              pinjamanLabels[cb.value]
+            } <span class="remove-tag" onclick="removeTag(event, '${
+              cb.id
+            }')">&times;</span>`;
+            tagsContainer.appendChild(tag);
+          });
+        }
+      }
+
+      function removeTag(event, checkboxId) {
+        event.stopPropagation();
+        document.getElementById(checkboxId).checked = false;
+        updateSelectedTags();
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", function (e) {
+        const dropdown = document.getElementById("pinjamanMultiselect");
+        if (dropdown && !dropdown.contains(e.target)) {
+          dropdown.classList.remove("open");
+        }
+      });
+
+      // Thousand separator for currency inputs
+      function formatThousand(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      }
+
+      function unformatThousand(str) {
+        return str.replace(/\./g, "");
+      }
+
+      // Initialize currency input formatting
+      document.querySelectorAll(".currency-input").forEach(function (input) {
+        input.addEventListener("input", function (e) {
+          // Get cursor position
+          let cursorPos = this.selectionStart;
+          let oldLength = this.value.length;
+
+          // Remove non-numeric characters except dots
+          let value = this.value.replace(/[^\d]/g, "");
+
+          // Store raw value in data attribute
+          this.dataset.rawValue = value;
+
+          // Format with thousand separator
+          if (value) {
+            this.value = formatThousand(value);
+          }
+
+          // Adjust cursor position
+          let newLength = this.value.length;
+          cursorPos = cursorPos + (newLength - oldLength);
+          this.setSelectionRange(cursorPos, cursorPos);
+        });
+
+        // Handle paste
+        input.addEventListener("paste", function (e) {
+          e.preventDefault();
+          let pastedData = (e.clipboardData || window.clipboardData).getData(
+            "text"
+          );
+          let numericValue = pastedData.replace(/[^\d]/g, "");
+          this.dataset.rawValue = numericValue;
+          this.value = formatThousand(numericValue);
+        });
+      });
+
+      // Validate current step before proceeding
+      function validateStep(currentStep) {
+        const stepElement = document.getElementById("step" + currentStep);
+        const requiredFields = stepElement.querySelectorAll("[required]");
+        let isValid = true;
+        let firstInvalidField = null;
+
+        // Remove previous error styles
+        stepElement.querySelectorAll(".is-invalid").forEach((el) => {
+          el.classList.remove("is-invalid");
+        });
+        stepElement.querySelectorAll(".invalid-feedback").forEach((el) => {
+          el.remove();
+        });
+
+        requiredFields.forEach((field) => {
+          // Check if field is empty
+          if (!field.value || field.value.trim() === "") {
+            isValid = false;
+            field.classList.add("is-invalid");
+
+            // Add error message
+            const errorMsg = document.createElement("div");
+            errorMsg.className = "invalid-feedback";
+            errorMsg.textContent = "Field ini wajib diisi";
+            field.parentNode.appendChild(errorMsg);
+
+            if (!firstInvalidField) {
+              firstInvalidField = field;
+            }
+          }
+        });
+
+        // Scroll to first invalid field
+        if (firstInvalidField) {
+          firstInvalidField.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+          firstInvalidField.focus();
+        }
+
+        return isValid;
+      }
+
+      // Step Navigation with validation
+      function nextStep(step) {
+        const currentStep = step - 1;
+
+        // Validate current step before proceeding
+        if (!validateStep(currentStep)) {
+          return; // Don't proceed if validation fails
+        }
+
+        // If moving to step 3, populate summary
+        if (step === 3) {
+          populateSummary();
+        }
+
+        // Hide all steps
+        document
+          .querySelectorAll(".form-step")
+          .forEach((el) => el.classList.add("d-none"));
+        // Show target step
+        document.getElementById("step" + step).classList.remove("d-none");
+        // Update tabs
+        updateTabs(step);
+        // Scroll to top of form
+        document
+          .querySelector(".application-card")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Populate summary data for Step 3
+      function populateSummary() {
+        const form = document.getElementById("applicationForm");
+
+        // Helper function to format currency
+        function formatCurrency(value) {
+          if (!value) return "-";
+          return "Rp " + parseInt(value).toLocaleString("id-ID");
+        }
+
+        // Helper function to get select text
+        function getSelectText(selectName) {
+          const select = form.querySelector(`[name="${selectName}"]`);
+          if (select && select.selectedIndex > 0) {
+            return select.options[select.selectedIndex].text;
+          }
+          return "-";
+        }
+
+        // Helper function to get input value
+        function getInputValue(inputName) {
+          const input = form.querySelector(`[name="${inputName}"]`);
+          return input && input.value ? input.value : "-";
+        }
+
+        // Helper function to get currency input raw value
+        function getCurrencyValue(inputName) {
+          const input = form.querySelector(`[name="${inputName}"]`);
+          if (input && input.dataset.rawValue) {
+            return input.dataset.rawValue;
+          }
+          return input && input.value ? input.value.replace(/\./g, "") : "-";
+        }
+
+        // Data Diri
+        document.getElementById("summary-nama").textContent =
+          getInputValue("nama");
+        document.getElementById("summary-handphone").textContent =
+          getInputValue("handphone");
+        document.getElementById("summary-email").textContent =
+          getInputValue("email");
+        document.getElementById("summary-pekerjaan").textContent =
+          getSelectText("pekerjaan");
+        document.getElementById("summary-pendapatan").textContent =
+          formatCurrency(getCurrencyValue("pendapatan"));
+        document.getElementById("summary-jaminan").textContent =
+          getSelectText("jaminan");
+
+        // Penilaian Mandiri
+        document.getElementById("summary-tujuan").textContent =
+          getSelectText("tujuan_pinjaman");
+
+        // Get checked checkboxes for pinjaman non-berjaminan
+        const checkedPinjaman = form.querySelectorAll(
+          'input[name="pinjaman_non_berjaminan[]"]:checked'
+        );
+        const pinjamanLabels = {
+          kartu_kredit: "Kartu Kredit",
+          paylater: "Paylater",
+          pinjaman_online: "Pinjaman Online",
+          kta: "KTA",
+          lainnya: "Lainnya",
+          tidak_ada: "Tidak Ada",
+        };
+        const pinjamanValues = Array.from(checkedPinjaman).map(
+          (cb) => pinjamanLabels[cb.value] || cb.value
+        );
+        document.getElementById("summary-pinjaman-non").textContent =
+          pinjamanValues.length > 0 ? pinjamanValues.join(", ") : "-";
+
+        document.getElementById("summary-kewajiban").textContent =
+          formatCurrency(getCurrencyValue("total_kewajiban"));
+
+        // Data Jaminan
+        document.getElementById("summary-alamat-jaminan").textContent =
+          getInputValue("alamat_jaminan");
+        const luasTanah = getInputValue("luas_tanah");
+        document.getElementById("summary-luas-tanah").textContent =
+          luasTanah !== "-" ? luasTanah + " m²" : "-";
+        const luasBangunan = getInputValue("luas_bangunan");
+        document.getElementById("summary-luas-bangunan").textContent =
+          luasBangunan !== "-" ? luasBangunan + " m²" : "-";
+        document.getElementById("summary-dokumen").textContent =
+          getSelectText("dokumen_jaminan");
+        document.getElementById("summary-pemilik").textContent =
+          getSelectText("pemilik_sertifikat");
+      }
+
+      function prevStep(step) {
+        // Hide all steps
+        document
+          .querySelectorAll(".form-step")
+          .forEach((el) => el.classList.add("d-none"));
+        // Show target step
+        document.getElementById("step" + step).classList.remove("d-none");
+        // Update tabs
+        updateTabs(step);
+        // Scroll to top of form
+        document
+          .querySelector(".application-card")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function updateTabs(activeStep) {
+        document.querySelectorAll(".step-tab").forEach((tab, index) => {
+          const tabStep = index + 1;
+          tab.classList.remove("active", "completed");
+
+          if (tabStep === activeStep) {
+            tab.classList.add("active");
+          } else if (tabStep < activeStep) {
+            tab.classList.add("completed");
+          }
+        });
+      }
+
+      // Remove error styling when user starts typing
+      document.querySelectorAll("input, select, textarea").forEach((field) => {
+        field.addEventListener("input", function () {
+          this.classList.remove("is-invalid");
+          const feedback = this.parentNode.querySelector(".invalid-feedback");
+          if (feedback) {
+            feedback.remove();
+          }
+        });
+        field.addEventListener("change", function () {
+          this.classList.remove("is-invalid");
+          const feedback = this.parentNode.querySelector(".invalid-feedback");
+          if (feedback) {
+            feedback.remove();
+          }
+        });
+      });
+
+      // Form submission with final validation
+      document
+        .getElementById("applicationForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Validate step 3 before submitting
+          if (!validateStep(3)) {
+            return;
+          }
+
+          // Disable submit button to prevent double submission
+          const submitBtn = this.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML =
+            '<i class="bi bi-hourglass-split me-2"></i>Mengirim...';
+
+          // Prepare form data
+          const formData = new FormData(this);
+
+          // Replace formatted currency values with raw values
+          const pendapatanInput = this.querySelector('[name="pendapatan"]');
+          const kewajibanInput = this.querySelector('[name="total_kewajiban"]');
+
+          if (pendapatanInput && pendapatanInput.dataset.rawValue) {
+            formData.set("pendapatan", pendapatanInput.dataset.rawValue);
+          }
+          if (kewajibanInput && kewajibanInput.dataset.rawValue) {
+            formData.set("total_kewajiban", kewajibanInput.dataset.rawValue);
+          }
+
+          try {
+            const response = await fetch("submit-loan.php", {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              // Hide form and show success screen
+              document.querySelector(".application-card").style.display =
+                "none";
+              document.querySelector(".application-header").style.display =
+                "none";
+              document.getElementById("successScreen").classList.add("show");
+              // Scroll to top
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              alert("Gagal mengirim pengajuan: " + result.message);
+              // Re-enable submit button
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalBtnText;
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Terjadi kesalahan. Silakan coba lagi.");
+            // Re-enable submit button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          }
+        });
+
+      // Confirmation Modal Functions
+      function closeTab() {
+        // Try to close the tab
+        window.close();
+        // If window.close() doesn't work (browser security), redirect to homepage
+        setTimeout(function () {
+          window.location.href = "index.html";
+        }, 100);
+      }
+
+      function continueForm() {
+        document.getElementById("confirmationModal").classList.add("hidden");
+        document.body.style.overflow = "auto";
+      }
+
+      // Prevent scrolling when modal is open
+      document.body.style.overflow = "hidden";
+
+      // Language Functions
+      async function fetchLanguageData(lang) {
+        const response = await fetch(`languages/${lang}.json`);
+        return response.json();
+      }
+
+      function setLanguagePreference(lang) {
+        localStorage.setItem("language", lang);
+      }
+
+      function updateContent(langData) {
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.getAttribute("data-i18n");
+          if (langData[key]) {
+            element.textContent = langData[key];
+          }
+        });
+      }
+
+      function setActiveLanguageFlag(lang) {
+        document.querySelectorAll(".flag-icon").forEach((flag) => {
+          flag.classList.remove("active");
+        });
+        if (lang === "id") {
+          document
+            .querySelector(".flag-icon.indonesia")
+            ?.classList.add("active");
+        } else if (lang === "en") {
+          document.querySelector(".flag-icon.english")?.classList.add("active");
+        }
+      }
+
+      async function changeLanguage(lang) {
+        setLanguagePreference(lang);
+        setActiveLanguageFlag(lang);
+        const langData = await fetchLanguageData(lang);
+        updateContent(langData);
+      }
+
+      // Load language on page load
+      window.addEventListener("DOMContentLoaded", async () => {
+        const userPreferredLanguage = localStorage.getItem("language") || "id";
+        setActiveLanguageFlag(userPreferredLanguage);
+        const langData = await fetchLanguageData(userPreferredLanguage);
+        updateContent(langData);
+      });
+    </script>
+  </body>
+</html>
