@@ -1,15 +1,20 @@
 <?php
 
-$servername = "rm-d9j40fh5e5ny3vr23zo.mysql.ap-southeast-5.rds.aliyuncs.com";
-$username = "pk_credit_core_pro_user";
-$password = "qie7rjuzn5nvs35t3znhdk7lamsgh0@";
-$dbname = "pk_credit_admin";
+// Load database configuration
+$dbConfig = require __DIR__ . '/config/database_config.php';
+
+$host = $dbConfig['host'];
+$database = $dbConfig['database'];
+$username = $dbConfig['username'];
+$password = $dbConfig['password'];
+$charset = $dbConfig['charset'] ?? 'utf8mb4';
 
 // Create PDO connection
-$dsn = "mysql:host=$servername;dbname=$dbname";
+$dsn = "mysql:host=$host;dbname=$database;charset=$charset";
 try {
     $conn = new PDO($dsn, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
