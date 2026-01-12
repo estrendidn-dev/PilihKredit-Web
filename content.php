@@ -1,20 +1,15 @@
 <?php
 
-// Load database configuration
-$dbConfig = require __DIR__ . '/config/database_config.php';
-
-$host = $dbConfig['host'];
-$database = $dbConfig['database'];
-$username = $dbConfig['username'];
-$password = $dbConfig['password'];
-$charset = $dbConfig['charset'] ?? 'utf8mb4';
+$servername = "rm-d9j40fh5e5ny3vr23zo.mysql.ap-southeast-5.rds.aliyuncs.com";
+$username = "pk_credit_core_pro_user";
+$password = "qie7rjuzn5nvs35t3znhdk7lamsgh0@";
+$dbname = "pk_credit_admin";
 
 // Create PDO connection
-$dsn = "mysql:host=$host;dbname=$database;charset=$charset";
+$dsn = "mysql:host=$servername;dbname=$dbname";
 try {
     $conn = new PDO($dsn, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
@@ -262,9 +257,18 @@ $cleanedContent = cleanContent($content['content']);
                             <img src="assets/img/google.png" height="60" width="180" alt="Google Play"
                                 class="download-badge" />
                         </a>
-                        <a class="d-inline-block mb-2">
-                            <img src="assets/img/apple.png" height="60" width="180" alt="App Store"
-                                class="download-badge" />
+                        <a
+                            href="https://apps.apple.com/id/app/pilih-kredit-kumpulan-pinjaman/id6749564952"
+                            target="_blank"
+                            class="d-inline-block mb-2"
+                        >
+                            <img
+                            src="assets/img/apple.png"
+                            height="60"
+                            width="180"
+                            alt="App Store"
+                            class="download-badge"
+                            />
                         </a>
                     </div>
                 </div>

@@ -298,9 +298,18 @@ if ($endPage - $startPage + 1 < $maxVisiblePages) {
                             <img src="assets/img/google.png" height="60" width="180" alt="Google Play"
                                 class="download-badge" />
                         </a>
-                        <a class="d-inline-block mb-2">
-                            <img src="assets/img/apple.png" height="60" width="180" alt="App Store"
-                                class="download-badge" />
+                        <a
+                            href="https://apps.apple.com/id/app/pilih-kredit-kumpulan-pinjaman/id6749564952"
+                            target="_blank"
+                            class="d-inline-block mb-2"
+                        >
+                            <img
+                            src="assets/img/apple.png"
+                            height="60"
+                            width="180"
+                            alt="App Store"
+                            class="download-badge"
+                            />
                         </a>
                     </div>
                 </div>

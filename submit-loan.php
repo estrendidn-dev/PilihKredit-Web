@@ -1,23 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-// Load Composer autoloader
-$autoloadPath = __DIR__ . '/vendor/autoload.php';
-if (!file_exists($autoloadPath)) {
-    echo json_encode([
-        'success' => false, 
-        'message' => 'Composer dependencies not installed. Please run "composer install" on the server.'
-    ]);
-    exit;
-}
-require_once $autoloadPath;
-
-// Load OSS Uploader class
-use PilihKredit\OssUploader;
-
-// Load OSS configuration
-$ossConfig = require __DIR__ . '/config/oss_config.php';
-
 // Database connection
 $servername = "rm-d9j40fh5e5ny3vr23zo.mysql.ap-southeast-5.rds.aliyuncs.com";
 $username = "pk_credit_core_pro_user";
@@ -59,9 +42,8 @@ foreach ($requiredFields as $field) {
 }
 
 // Validate pinjaman_non_berjaminan separately (it's an array)
-// Note: When no checkbox is selected, the field won't exist in $_POST
-if (!isset($data['pinjaman_non_berjaminan']) || !is_array($data['pinjaman_non_berjaminan']) || count($data['pinjaman_non_berjaminan']) === 0) {
-    echo json_encode(['success' => false, 'message' => "Field 'pinjaman_non_berjaminan' is required. Silakan pilih setidaknya satu jenis pinjaman."]);
+if (empty($data['pinjaman_non_berjaminan']) || !is_array($data['pinjaman_non_berjaminan']) || count($data['pinjaman_non_berjaminan']) === 0) {
+    echo json_encode(['success' => false, 'message' => "Field 'pinjaman_non_berjaminan' is required"]);
     exit;
 }
 
@@ -146,93 +128,11 @@ try {
     
     $insertedId = $conn->lastInsertId();
     
-    // Prepare data for OSS upload
-    $ossData = [
-        'application_id' => $insertedId,
-        'submitted_at' => date('Y-m-d H:i:s'),
-        'data_diri' => [
-            'nama' => $full_name,
-            'handphone' => $phone_number,
-            'email' => $email,
-            'pekerjaan' => $occupation,
-            'pendapatan' => $monthly_income,
-            'jaminan' => $collateral_type,
-        ],
-        'penilaian_mandiri' => [
-            'tujuan_pinjaman' => $loan_purpose,
-            'pinjaman_berjaminan' => $secured_loan_type,
-            'riwayat_berjaminan' => $secured_payment_history,
-            'pinjaman_non_berjaminan' => is_array($data['pinjaman_non_berjaminan']) 
-                ? $data['pinjaman_non_berjaminan'] 
-                : explode(',', $unsecured_loan_type),
-            'riwayat_non_berjaminan' => $unsecured_payment_history,
-            'total_kewajiban' => $total_monthly_obligations,
-        ],
-        'data_jaminan' => [
-            'alamat_jaminan' => $collateral_address,
-            'luas_tanah' => $land_area,
-            'luas_bangunan' => $building_area,
-            'dokumen_jaminan' => $collateral_document,
-            'pemilik_sertifikat' => $certificate_owner,
-            'tempat_tinggal' => $is_residence,
-            'tempat_usaha' => $is_business_place,
-            'disewakan' => $is_rented,
-            'jaminan_kredit' => $is_collateralized,
-        ],
-    ];
-    
-    // Upload to OSS
-    $ossUploadSuccess = false;
-    $ossUrl = null;
-    $ossError = null;
-    
-    // Log configuration being used (for debugging)
-    error_log("OSS Upload attempt - Bucket: {$ossConfig['bucket']}, Endpoint: {$ossConfig['endpoint']}, AccessKeyId: " . substr($ossConfig['access_key_id'], 0, 10) . "...");
-    
-    try {
-        $ossUploader = new OssUploader(
-            $ossConfig['access_key_id'],
-            $ossConfig['access_key_secret'],
-            $ossConfig['endpoint'],
-            $ossConfig['bucket'],
-            $ossConfig['bucket_domain']
-        );
-        
-        // Generate object name for loan application
-        $date = date('Y/m/d');
-        $timestamp = date('YmdHis');
-        $random = mt_rand(1000, 9999);
-        $objectName = 'loan-applications/' . $date . '/loan-' . $timestamp . '-' . $insertedId . '-' . $random . '.json';
-        
-        // Convert data to JSON
-        $jsonContent = json_encode($ossData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-        
-        // Upload to OSS
-        $ossUrl = $ossUploader->uploadJson($jsonContent, $objectName);
-        $ossUploadSuccess = true;
-        error_log("OSS upload successful for application ID {$insertedId}. URL: {$ossUrl}");
-    } catch (Exception $e) {
-        $ossError = $e->getMessage();
-        // Log detailed error but don't fail the request since DB save was successful
-        error_log("OSS upload failed for application ID {$insertedId}: " . $ossError);
-        error_log("OSS Config used - Bucket: {$ossConfig['bucket']}, Endpoint: {$ossConfig['endpoint']}");
-    }
-    
-    // Return success response (even if OSS upload failed, DB save was successful)
-    $response = [
+    echo json_encode([
         'success' => true, 
         'message' => 'Pengajuan berhasil dikirim!',
-        'application_id' => $insertedId,
-        'oss_uploaded' => $ossUploadSuccess
-    ];
-    
-    if ($ossUploadSuccess) {
-        $response['oss_url'] = $ossUrl;
-    } else {
-        $response['oss_error'] = $ossError ?: 'OSS upload failed';
-    }
-    
-    echo json_encode($response);
+        'application_id' => $insertedId
+    ]);
 
 } catch (PDOException $e) {
     echo json_encode([

@@ -28,6 +28,7 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+
     <style>
       /* Confirmation Modal Styles */
       .confirmation-modal-overlay {
@@ -333,16 +334,6 @@
 
       .multiselect-dropdown .tag .remove-tag:hover {
         color: #004a9f;
-      }
-
-      .multiselect-dropdown.is-invalid .dropdown-btn {
-        border-color: #dc3545;
-        background-color: #fff8f8;
-      }
-
-      .multiselect-dropdown.is-invalid .dropdown-btn:focus {
-        border-color: #dc3545;
-        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
       }
 
       /* Success Screen Styles */
@@ -1109,7 +1100,6 @@
                       <div
                         class="multiselect-dropdown"
                         id="pinjamanMultiselect"
-                        data-required="true"
                       >
                         <div class="dropdown-btn" onclick="toggleMultiselect()">
                           <div class="selected-tags" id="selectedTags">
@@ -1794,7 +1784,11 @@
                   class="download-badge"
                 />
               </a>
-              <a class="d-inline-block mb-2">
+              <a
+                href="https://apps.apple.com/id/app/pilih-kredit-kumpulan-pinjaman/id6749564952"
+                target="_blank"
+                class="d-inline-block mb-2"
+              >
                 <img
                   src="assets/img/apple.png"
                   height="60"
@@ -1931,7 +1925,6 @@
           'input[name="pinjaman_non_berjaminan[]"]:checked'
         );
         const tagsContainer = document.getElementById("selectedTags");
-        const multiselectDropdown = document.getElementById("pinjamanMultiselect");
 
         if (checkboxes.length === 0) {
           tagsContainer.textContent = "Pilih jenis pinjaman";
@@ -1947,15 +1940,6 @@
             }')">&times;</span>`;
             tagsContainer.appendChild(tag);
           });
-          
-          // Remove error state when at least one option is selected
-          if (multiselectDropdown) {
-            multiselectDropdown.classList.remove("is-invalid");
-            const errorMsg = multiselectDropdown.parentNode.querySelector(".invalid-feedback");
-            if (errorMsg) {
-              errorMsg.remove();
-            }
-          }
         }
       }
 
@@ -2032,9 +2016,6 @@
         stepElement.querySelectorAll(".invalid-feedback").forEach((el) => {
           el.remove();
         });
-        stepElement.querySelectorAll(".multiselect-dropdown").forEach((el) => {
-          el.classList.remove("is-invalid");
-        });
 
         requiredFields.forEach((field) => {
           // Check if field is empty
@@ -2054,40 +2035,13 @@
           }
         });
 
-        // Validate multiselect dropdown (pinjaman_non_berjaminan)
-        const multiselectDropdown = stepElement.querySelector(
-          "#pinjamanMultiselect[data-required='true']"
-        );
-        if (multiselectDropdown) {
-          const checkedBoxes = stepElement.querySelectorAll(
-            'input[name="pinjaman_non_berjaminan[]"]:checked'
-          );
-          if (checkedBoxes.length === 0) {
-            isValid = false;
-            multiselectDropdown.classList.add("is-invalid");
-
-            // Add error message
-            const errorMsg = document.createElement("div");
-            errorMsg.className = "invalid-feedback";
-            errorMsg.textContent =
-              "Silakan pilih setidaknya satu jenis pinjaman";
-            multiselectDropdown.parentNode.appendChild(errorMsg);
-
-            if (!firstInvalidField) {
-              firstInvalidField = multiselectDropdown;
-            }
-          }
-        }
-
         // Scroll to first invalid field
         if (firstInvalidField) {
           firstInvalidField.scrollIntoView({
             behavior: "smooth",
             block: "center",
           });
-          if (firstInvalidField.focus) {
-            firstInvalidField.focus();
-          }
+          firstInvalidField.focus();
         }
 
         return isValid;
